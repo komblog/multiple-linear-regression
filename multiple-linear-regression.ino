@@ -1,7 +1,8 @@
-#include <dht.h>
-dht DHT;
-
-#define DHT11_PIN 2
+// Linear regression calculator, written by Markus Bindhammer
+// Online linear regression calculator:
+// http://www.alcula.com/calculators/statistics/linear-regression/
+// Program Regresi Linear Berganda
+// Edit oleh Heri J Situmorang
 
 int n = 0; 
 float x1[20], x2[20];
@@ -37,7 +38,6 @@ void loop() {
   get_input(input_x1, 20);
   
   if (strcmp (input_x1, "ESC") == 0 && n > 0) { //selesai atau belum
-    int chk = DHT.read11(DHT11_PIN);
     for (int i = 0; i < n; i ++) {
       x1_2[i] = pow(x1[i],2); //mencari nilai x1^2
       x2_2[i] = pow(x2[i],2); //mencari nilai x2^2
@@ -79,11 +79,8 @@ void loop() {
     float b1 = ((D*F)-(G*H))/((C*D)-(pow(H,2)));
     float b2 = ((C*G)-(F*H))/((C*D)-(pow(H,2)));
     float a = ((totalY) - (b1*totalX1) - (b2*totalX2))/n;
-    int humid = DHT.humidity;
-    int temp = DHT.temperature;
-
     
-    float hasil = a + (b1*temp) + (b2*humid);
+    float hasil = a + (b1*temp) + (b2*humid); //hapus temp dan humid dengan fitur program anda
     Serial.print("SigmaX1X2 = ");
     Serial.println(totalX1X2);
     Serial.print("SigmaX1 = ");
