@@ -1,3 +1,11 @@
+// Linear regression calculator, written by Markus Bindhammer
+// Online linear regression calculator:
+// http://www.alcula.com/calculators/statistics/linear-regression/
+// Program mencari nilai regresi linear berganda
+// Edit by Heri J Situmorang
+// https://github.com/komblog/
+// silahkan baca readme terlebih dahulu
+
 #include <dht.h>
 dht DHT;
 
@@ -76,14 +84,14 @@ void loop() {
     float H = totalX1X2 - ((totalX1 * totalX2)/n);
 
     
-    float b1 = ((D*F)-(G*H))/((C*D)-(pow(H,2)));
-    float b2 = ((C*G)-(F*H))/((C*D)-(pow(H,2)));
-    float a = ((totalY) - (b1*totalX1) - (b2*totalX2))/n;
+    float b1 = ((D*F)-(G*H))/((C*D)-(pow(H,2))); //mencari nilai b1
+    float b2 = ((C*G)-(F*H))/((C*D)-(pow(H,2))); //mencari nilai b2
+    float a = ((totalY) - (b1*totalX1) - (b2*totalX2))/n; //mencari nilai a
     int humid = DHT.humidity;
     int temp = DHT.temperature;
 
     
-    float hasil = a + (b1*temp) + (b2*humid);
+    float hasil = a + (b1*temp) + (b2*humid); //mencari nilai Y
     Serial.print("SigmaX1X2 = ");
     Serial.println(totalX1X2);
     Serial.print("SigmaX1 = ");
